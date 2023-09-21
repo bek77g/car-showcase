@@ -34,7 +34,7 @@ const SearchManufacturer = ({
   }, []);
 
   return (
-    <div className='search-manufacturer'>
+    <div className='search-manufacturer z-10'>
       <Combobox value={manufacturer} onChange={setManufacturer}>
         <div className='relative w-full'>
           <Combobox.Button className='absolute top-[14px]'>
