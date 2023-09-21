@@ -4,7 +4,7 @@ import { fetchCars } from '@/utils';
 import Image from 'next/image';
 
 export default async function Home({ searchParams }) {
-  const allCars = await fetchCars({
+  const { allCars, error } = await fetchCars({
     manufacturer: searchParams.manufacturer || '',
     year: searchParams.year || 2022,
     fuel: searchParams.fuel || '',
@@ -48,7 +48,7 @@ export default async function Home({ searchParams }) {
         ) : (
           <div className='home__error-container'>
             <h2 className='text-black text-xl font-bold'>Oops, no results</h2>
-            <p>{allCars?.message}</p>
+            {error && <p>{error}</p>}
           </div>
         )}
       </div>
