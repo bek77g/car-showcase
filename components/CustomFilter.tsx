@@ -5,7 +5,7 @@ import { updateSearchParams } from '@/utils';
 import { Listbox, Transition } from '@headlessui/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 
 const CustomFilter = ({ title, options }: CustomFilterProps) => {
   const router = useRouter();
@@ -16,6 +16,18 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
 
     router.push(newPathName, { scroll: false });
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const newOption = searchParams.get(title);
+    if (newOption) {
+      setSelected(
+        options.find(
+          (option) => option.value.toLowerCase() === newOption.toLowerCase()
+        )
+      );
+    }
+  });
 
   return (
     <div className='w-fit'>
