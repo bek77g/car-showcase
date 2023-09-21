@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { SearchManufacturer } from './';
-import { FormEvent, useState } from 'react';
+import { FormEvent, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
@@ -52,6 +52,14 @@ const SearchBar = () => {
 
     router.push(newPathName, { scroll: false });
   };
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const model = searchParams.get('model');
+    if (model) {
+      setModel(model);
+    }
+  });
 
   return (
     <form className='searchbar' onSubmit={handleSearch}>

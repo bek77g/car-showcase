@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import { Fragment, useState } from 'react';
+import { Fragment, useEffect, useState } from 'react';
 import { Combobox, Transition } from '@headlessui/react';
 import { manufacturers } from '@/constants';
 
@@ -20,6 +20,18 @@ const SearchManufacturer = ({
             .replace(/\s+/g, '')
             .includes(query.toLowerCase().replace(/\s+/g, ''))
         );
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search);
+    const manufacturer = searchParams.get('manufacturer');
+    if (manufacturer) {
+      const newManufacturer =
+        manufacturers.find(
+          (item) => item.toLowerCase() === manufacturer.toLowerCase()
+        ) || manufacturer;
+      setManufacturer(newManufacturer);
+    }
+  });
 
   return (
     <div className='search-manufacturer'>
