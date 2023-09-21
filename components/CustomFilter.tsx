@@ -27,7 +27,7 @@ const CustomFilter = ({ title, options }: CustomFilterProps) => {
         )
       );
     }
-  });
+  }, []);
 
   return (
     <div className='w-fit'>

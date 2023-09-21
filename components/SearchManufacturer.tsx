@@ -31,7 +31,7 @@ const SearchManufacturer = ({
         ) || manufacturer;
       setManufacturer(newManufacturer);
     }
-  });
+  }, []);
 
   return (
     <div className='search-manufacturer'>

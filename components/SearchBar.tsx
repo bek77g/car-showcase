@@ -59,7 +59,7 @@ const SearchBar = () => {
     if (model) {
       setModel(model);
     }
-  });
+  }, []);
 
   return (
     <form className='searchbar' onSubmit={handleSearch}>
